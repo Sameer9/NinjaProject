@@ -27,10 +27,16 @@ public class Routes implements ApplicationRoutes {
     @Override
     public void init(Router router) {  
         
+    
         router.GET().route("/").with(ApplicationController::index);
         router.GET().route("/hello_world.json").with(ApplicationController::helloWorldJson);
-        
+//        router.GET().route("/PrintingMyName").with(ApplicationController::MyName);
+        router.GET().route("/PrintingAllBooks").with(ApplicationController::PrintingBook);
+        router.GET().route("/UI").with(ApplicationController::main);
+        router.POST().route("/DeleteBooks").with(ApplicationController::deleteBook);
 //        trying printing my name
+        router.POST().route("/EditBooks").with(ApplicationController::editBook);
+        router.POST().route("/AddBooks").with(ApplicationController::newBook);
 //        router.GET().route("/").with(ApplicationController::myName);
         
  

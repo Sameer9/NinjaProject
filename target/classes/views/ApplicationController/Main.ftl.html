@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html >
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+
+<script type="application/javascript" src="../../assets/js/Book.js"></script>
+<script type="application/javascript" src="../../assets/js/Library.js"></script>
+<script type="application/javascript" src="../../assets/js/controller.js"></script>
+<script type="application/javascript" src="../../assets/js/app.js"></script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+table th,td {
+	border : 1px solid black;
+	border-collapse : collapse;
+	padding : 3px;
+}
+table th
+{
+	background-color: green;
+}
+table tr:nth-child(odd)
+{
+	background-color: #f1f1f1;
+}
+table tr:nth-child(even)
+{
+	background-color: #c1c1c1;
+}
+.btn-btn-primary
+{
+	background-color:#999999;
+}
+</style>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="controller" class="container">
+        <h2><center>Books</center></h2>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+            <tr ng-repeat="i in books" >
+                <div ng-show="!i.edit">
+                    <td ng-show="!i.edit">{{i.name}}</td>
+                    <td ng-show="!i.edit">{{i.author}}</td>
+                    <td ng-show="!i.edit">{{i.price}}</td>
+                    <td ng-show="!i.edit">{{i.description}}</td>
+                    <td ng-show="!i.edit"><input class="btn btn-primary" type="button" value="Edit" data-ng-click="editData(i)" /></td>    
+                    <td ng-show="!i.edit"><input class="btn btn-danger" type="button" value="Delete" data-ng-click="DeleteData(i)" /></td>
+                </div>
+                <div ng-show="i.edit">
+                    <td ng-show="i.edit"><input ng-pattern="/^[a-zA-Z0-9 ]*$/" type="string" data-ng-model="editbook.name" required /></td> 
+                    <p ng-show="userForm.username.$error.required">Your username is required.</p>
+                    <td ng-show="i.edit"><input type="string" data-ng-model="editbook.author" required /></td>         
+                    <td ng-show="i.edit"><input type="string" data-ng-model="editbook.price" required/></td>         
+                    <td ng-show="i.edit"><input type="string" data-ng-model="editbook.description" required/></td>  
+                    <td ng-show="i.edit"><input class="btn btn-primary" type="button" value="Save" data-ng-click="update(editbook)" /></td>
+                </div>    
+            </tr>
+            <tr>
+                <td><input type="string" ng-pattern="/^[a-zA-Z0-9]*$/" data-ng-model="newbook.name" required /></td>          
+                <td><input type="string" data-ng-model="newbook.author" required/></td>         
+                <td><input type="string" data-ng-model="newbook.price" required /></td>         
+                <td><input type="string" data-ng-model="newbook.description" required /></td>  
+                <td><input class="btn btn-primary" type="button" value="Add" data-ng-click="addData(newbook)" /></td>    
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
